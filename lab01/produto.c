@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include "produto.h"
@@ -55,7 +54,6 @@ void listar_produtos(Produto* lista, int *tamanho){
 
 Produto* buscar_produto(Produto* lista, int *tamanho){
     int cod = 0, i;
-    bool achou = false;
     printf("\nDigite o codigo: ");
     scanf("%d", &cod);
     for (i = 0; i < *tamanho; i++){
