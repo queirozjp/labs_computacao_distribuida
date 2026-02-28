@@ -82,7 +82,7 @@ void remover_produto(Produto** lista, int *tamanho){
         if ((*lista)[i].codigo == cod){
             free((*lista)[i].nome);
             (*tamanho)--;
-            for (j = 0; j < *tamanho; j++){
+            for (j = i; j < *tamanho; j++){
                 (*lista)[j] = (*lista)[j+1];
             }
             if (*tamanho == 0) {
