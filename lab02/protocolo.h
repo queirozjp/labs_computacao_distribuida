@@ -1,0 +1,21 @@
+#ifndef PROTOCOLO_H
+#define PROTOCOLO_H
+
+#define PORTA_PADRAO 7070
+#define MAX_RODADAS 5
+#define TEMPO_RODADA 10
+#define MIN_CARACTERES 5
+#define BUFFER_SIZE 1024
+
+// Prefixos das mensagens
+#define MSG_PREFIX "MSG"
+#define NOME_PREFIX "NOME"
+#define AGUARDE_PREFIX "AGUARDE"
+#define RODADA_PREFIX "RODADA"
+#define RESULTADO_PREFIX "RESULTADO"
+#define PLACAR_PREFIX "PLACAR"
+#define FIM_PREFIX "FIM"
+#define PALAVRA_PREFIX "PALAVRA"
+#define TIMEOUT_PREFIX "TIMEOUT"
+
+#endif
