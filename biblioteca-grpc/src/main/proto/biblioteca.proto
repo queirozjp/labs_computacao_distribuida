@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "br.mackenzie.biblioteca.proto";
+option java_outer_classname = "BibliotecaProto";
+
+package biblioteca;
+
+// ─────────────────────────────────────────────
+// Mensagens — Livro
+// ─────────────────────────────────────────────
+
+message LivroRequest {
+    string titulo = 1;
+    string autor  = 2;
+    int32  ano    = 3;
+    string isbn   = 4;
+}
+
+message LivroResponse {
+    string id      = 1;
+    string titulo  = 2;
+    string autor   = 3;
+    int32  ano     = 4;
+    string isbn    = 5;
+    string status  = 6;
+    string mensagem = 7;
+}
+
+// ─────────────────────────────────────────────
+// Mensagens — Autor
+// ─────────────────────────────────────────────
+
+message AutorRequest {
+    string autor = 1;
+}
+
+// ─────────────────────────────────────────────
+// Mensagens — Empréstimo
+// ─────────────────────────────────────────────
+
+message EmprestimoRequest {
+    string usuario  = 1;
+    string livro_id = 2;
+}
+
+message EmprestimoResumo {
+    int32  total_emprestimos      = 1;
+    int64  tempo_processamento_ms = 2;
+    string mensagem               = 3;
+}
+
+// ─────────────────────────────────────────────
+// Mensagens — Chat Bibliotecário
+// ─────────────────────────────────────────────
+
+message ChatMensagem {
+    string usuario    = 1;
+    string palavra_chave = 2;
+}
+
+message ChatSugestao {
+    string sugestao_titulo = 1;
+    string sugestao_autor  = 2;
+    string motivo          = 3;
+}
+
+// ─────────────────────────────────────────────
+// Serviço
+// ─────────────────────────────────────────────
+
+service BibliotecaService {
+
+    // 1️⃣  Unary RPC
+    rpc cadastrarLivro (LivroRequest) returns (LivroResponse);
+
+    // 2️⃣  Server Streaming RPC
+    rpc listarLivrosPorAutor (AutorRequest) returns (stream LivroResponse);
+
+    // 3️⃣  Client Streaming RPC
+    rpc registrarEmprestimos (stream EmprestimoRequest) returns (EmprestimoResumo);
+
+    // 4️⃣  Bidirectional Streaming RPC
+    rpc chatBibliotecario (stream ChatMensagem) returns (stream ChatSugestao);
+}
